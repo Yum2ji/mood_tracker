@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_tracker/features/authentication/widgets/sign_up_screen.dart';
 
 void main() {
   runApp(const MoodTracker());
@@ -11,12 +12,20 @@ class MoodTracker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Mood Tracker',
+      themeMode: ThemeMode.system,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFFECE6C2),
+        ),
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: Color(0xFFECE6C2),
+        bottomAppBarTheme: BottomAppBarTheme(
+            color: Color(0xFFECE6C2),
+        ),
       ),
-      home: Container(),
+      home: SignUpScreen(),
     );
   }
 }
-
