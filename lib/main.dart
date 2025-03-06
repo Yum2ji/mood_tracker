@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_tracker/common/main_navigation_screen.dart';
 import 'package:mood_tracker/features/authentication/widgets/sign_up_screen.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MoodTracker extends StatelessWidget {
             color: Color(0xFFECE6C2),
         ),
       ),
-      home: SignUpScreen(),
+      home: MainNavigationScreen(tab: "home"),
     );
   }
 }
