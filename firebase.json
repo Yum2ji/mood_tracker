@@ -1,0 +1,41 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "nomad-ym-moodtracker",
+          "appId": "1:975594184646:android:01d3ae48e3b4d460c81cc7",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "nomad-ym-moodtracker",
+          "configurations": {
+            "android": "1:975594184646:android:01d3ae48e3b4d460c81cc7",
+            "ios": "1:975594184646:ios:be1571a6e4b15d86c81cc7",
+            "macos": "1:975594184646:ios:be1571a6e4b15d86c81cc7",
+            "web": "1:975594184646:web:c581d2525234e6e5c81cc7",
+            "windows": "1:975594184646:web:6b5c0d6bd38add50c81cc7"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix=\"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ]
+}

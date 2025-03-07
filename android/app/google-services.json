@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "975594184646",
+    "project_id": "nomad-ym-moodtracker",
+    "storage_bucket": "nomad-ym-moodtracker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975594184646:android:01d3ae48e3b4d460c81cc7",
+        "android_client_info": {
+          "package_name": "com.example.mood_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7gZYRW41NUmWUCJnFYuONxiiLx08G3OU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

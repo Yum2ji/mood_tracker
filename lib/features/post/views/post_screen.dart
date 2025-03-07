@@ -270,7 +270,7 @@ class PostScreenState extends ConsumerState<PostScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: realSize.width * 0.6,
+                    width: realSize.width * 0.8,
                     padding: EdgeInsets.symmetric(
                       vertical: Sizes.size10,
                     ),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mood_tracker/constants/gaps.dart';
 import 'package:mood_tracker/constants/sizes.dart';
 import 'package:mood_tracker/features/home/views/home_timeline_screen.dart';
 import 'package:mood_tracker/features/post/views/post_screen.dart';
+import 'package:mood_tracker/features/users/views/profile_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
+  static const String routeName = "mainNavigation";
   final String tab;
   const MainNavigationScreen({
     super.key,
@@ -17,13 +20,15 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
+  late int _selectedIndex = _tabs.indexOf(widget.tab);
   final List<String> _tabs = [
     "home",
-    "discover",
+    "post",
+    "profile",
   ];
-  late int _selectedIndex = _tabs.indexOf(widget.tab);
 
   void onTap(int index) {
+    context.go("/${_tabs[index]}");
     setState(() {
       _selectedIndex = index;
     });
@@ -54,10 +59,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             offstage: _selectedIndex != 1,
             child: PostScreen(),
           ),
+          Offstage(
+            offstage: _selectedIndex != 2,
+            child: ProfileScreen(),
+          ),
         ],
       ),
       bottomNavigationBar: Container(
-        width: realSize.width * 0.6,
+        width: realSize.width * 0.8,
         height: realSize.height * 0.07,
         decoration: BoxDecoration(
           border: Border(
@@ -83,7 +92,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 ),
               ),
             ),
-            Gaps.h48,
+            Gaps.h24,
             Expanded(
               child: GestureDetector(
                 onTap: () => onTap(1),
@@ -91,6 +100,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                   alignment: Alignment.center,
                   child: FaIcon(
                     FontAwesomeIcons.pencil,
+                    size: Sizes.size32,
+                  ),
+                ),
+              ),
+            ),
+            Gaps.h24,
+            Expanded(
+              child: GestureDetector(
+                onTap: () => onTap(2),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: FaIcon(
+                    FontAwesomeIcons.user,
                     size: Sizes.size32,
                   ),
                 ),
