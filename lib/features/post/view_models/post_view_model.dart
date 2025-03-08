@@ -47,10 +47,8 @@ class PostViewModel extends AsyncNotifier<List<PostModel>> {
       if (profile != null) {
         state = const AsyncValue.loading();
         await _postrepository.writePost(_authenticationRepository.user!.uid, postInfo);
-         print(state);
         _list = await _fetchPosts();
-        state = AsyncValue.data(_list);
-        print(state);
+        state = AsyncValue.data(_list);  
       }
     }
 
@@ -58,7 +56,22 @@ class PostViewModel extends AsyncNotifier<List<PostModel>> {
       showFirebaseErrorSnack(context, state.error);
     }
   }
+
+  Future<void> deletePost(String pid) async {
+    if (_authenticationRepository.isLoggedIn) {
+      final profile = await _usersrepository
+          .findProfile(_authenticationRepository.user!.uid);
+      if (profile != null) {
+        state = const AsyncValue.loading();
+        await _postrepository.deletePost(_authenticationRepository.user!.uid, pid);
+        _list = await _fetchPosts();
+        state = AsyncValue.data(_list);  
+      }
+    }
+  }
 }
+
+
 
 final postProvider = AsyncNotifierProvider<PostViewModel, List<PostModel>>(
   () => PostViewModel(),

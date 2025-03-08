@@ -25,9 +25,6 @@ class UserRepository {
     await _db.collection("users").doc(uid).update(data);
   }
 
-  Future<void> writePost(String uid, PostModel postInfo) async{
-    await _db.collection("users").doc(uid).collection("post").add(postInfo.toJson());
-  }
 }
 
 final userRepo = Provider(

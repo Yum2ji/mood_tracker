@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mood_tracker/constants/gaps.dart';
 import 'package:mood_tracker/constants/sizes.dart';
-import 'package:mood_tracker/features/home/view_models/timeline_view_models.dart';
 import 'package:mood_tracker/features/post/models/post_model.dart';
 import 'package:mood_tracker/features/post/view_models/post_view_model.dart';
+import 'package:mood_tracker/utils.dart';
 
 class PostScreen extends ConsumerStatefulWidget {
   const PostScreen({super.key});
@@ -48,12 +48,17 @@ class PostScreenState extends ConsumerState<PostScreen> {
 
   void _onPostSummit() {
     final postInfo = PostModel(
+      pid: formatDateTime(),
       moodDescription: _feel,
-      moodIcon: moods[_selectedMoodIdx],
+      moodIcon: (_selectedMoodIdx < 8) ? moods[_selectedMoodIdx] : "check mood",
       createdDate: DateTime.now().toString(),
     );
     ref.read(postProvider.notifier).writePost(context, postInfo);
-  
+
+    setState(() {
+      _feelConroller.clear(); // TextField 비우기
+      _selectedMoodIdx = 8; // 이모지 선택 초기화
+    });
   }
 
   @override

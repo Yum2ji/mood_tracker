@@ -3,10 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mood_tracker/constants/gaps.dart';
 import 'package:mood_tracker/constants/sizes.dart';
-import 'package:mood_tracker/features/home/view_models/timeline_view_models.dart';
 import 'package:mood_tracker/features/home/views/widgets/message_form.dart';
 import 'package:mood_tracker/features/post/view_models/post_view_model.dart';
-import 'package:mood_tracker/features/users/view_models/users_view_model.dart';
 import 'package:mood_tracker/utils.dart';
 
 class HomeTimelineScreen extends ConsumerStatefulWidget {
@@ -45,6 +43,7 @@ class HomeTimelineScreenState extends ConsumerState<HomeTimelineScreen> {
                     final postData = posts[index];
 
                     return MessageForm(
+                      pid: postData.pid,
                       mood: postData.moodIcon,
                       description: postData.moodDescription,
                       createdTime:
