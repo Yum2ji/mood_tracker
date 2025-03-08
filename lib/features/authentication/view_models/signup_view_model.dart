@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mood_tracker/common/main_navigation_screen.dart';
 import 'package:mood_tracker/features/authentication/repos/authentication_repo.dart';
+import 'package:mood_tracker/features/users/view_models/users_view_model.dart';
 import 'package:mood_tracker/utils.dart';
 
 class SignupViewModel extends AsyncNotifier<void> {
@@ -15,15 +16,19 @@ class SignupViewModel extends AsyncNotifier<void> {
     _autoRepo = ref.read(authRepo);
   }
 
-    Future<void> signUp(BuildContext context) async {
+  Future<void> signUp(BuildContext context) async {
     state = const AsyncValue.loading();
     final form = ref.read(signUpForm);
-    print("email :${form["email"]}");
-    print("password :${form["password"]}");
+    final users = ref.read(usersProvider.notifier);
+
     state = await AsyncValue.guard(() async {
       final userCredential = await _autoRepo.createAccount(
         form["email"],
         form["password"],
+      );
+
+      await users.createProfile(
+        userCredential,
       );
     });
 

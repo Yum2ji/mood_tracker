@@ -68,15 +68,15 @@ class _MessageFormState extends ConsumerState<MessageForm> {
                 style: TextStyle(
                   fontSize: Sizes.size18,
                   color: Colors.black,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],
           ),
         ),
-        Gaps.v16,
+        Gaps.v8,
         Text(
-          "${widget.createdTime} ago",
+          widget.createdTime,
           style: TextStyle(
             fontSize: Sizes.size16,
             fontWeight: FontWeight.w500,

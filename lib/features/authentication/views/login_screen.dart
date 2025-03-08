@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mood_tracker/features/authentication/widgets/common/common_form.dart';
-import 'package:mood_tracker/features/authentication/widgets/sign_up_screen.dart';
+import 'package:mood_tracker/features/authentication/views/common/common_form.dart';
+import 'package:mood_tracker/features/authentication/views/sign_up_screen.dart';
 
 class LoginScreen extends ConsumerWidget {
   static const routeName = "logIn";

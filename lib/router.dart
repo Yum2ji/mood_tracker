@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mood_tracker/common/main_navigation_screen.dart';
 import 'package:mood_tracker/features/authentication/repos/authentication_repo.dart';
-import 'package:mood_tracker/features/authentication/widgets/login_screen.dart';
-import 'package:mood_tracker/features/authentication/widgets/sign_up_screen.dart';
+import 'package:mood_tracker/features/authentication/views/login_screen.dart';
+import 'package:mood_tracker/features/authentication/views/sign_up_screen.dart';
 
 final routerProvider = Provider(
   (ref) {

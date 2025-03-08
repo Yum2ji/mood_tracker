@@ -7,9 +7,9 @@ import 'package:mood_tracker/constants/gaps.dart';
 import 'package:mood_tracker/constants/sizes.dart';
 import 'package:mood_tracker/features/authentication/view_models/login_view_models.dart';
 import 'package:mood_tracker/features/authentication/view_models/signup_view_model.dart';
-import 'package:mood_tracker/features/authentication/widgets/common/alert_enter.dart';
-import 'package:mood_tracker/features/authentication/widgets/login_screen.dart';
-import 'package:mood_tracker/features/authentication/widgets/sign_up_screen.dart';
+import 'package:mood_tracker/features/authentication/views/common/alert_enter.dart';
+import 'package:mood_tracker/features/authentication/views/login_screen.dart';
+import 'package:mood_tracker/features/authentication/views/sign_up_screen.dart';
 
 class CommonForm extends ConsumerStatefulWidget {
   final String title;

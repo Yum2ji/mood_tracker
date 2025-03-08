@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:mood_tracker/features/post/models/post_model.dart';
 import 'package:mood_tracker/features/users/models/user_profile_model.dart';
 
 class UserRepository {
@@ -12,7 +12,6 @@ class UserRepository {
    */
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   Future<void> createProfile(UserProfileModel profile) async {
     await _db.collection("users").doc(profile.uid).set(profile.toJson());
@@ -24,6 +23,10 @@ class UserRepository {
   }
   Future<void> updateUser(String uid, Map<String, dynamic> data) async {
     await _db.collection("users").doc(uid).update(data);
+  }
+
+  Future<void> writePost(String uid, PostModel postInfo) async{
+    await _db.collection("users").doc(uid).collection("post").add(postInfo.toJson());
   }
 }
 
