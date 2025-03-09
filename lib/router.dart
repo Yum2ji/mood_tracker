@@ -35,7 +35,7 @@ final routerProvider = Provider(
         ),
         GoRoute(
           name: MainNavigationScreen.routeName,
-          path: "/:tab(home|post|profile)",
+          path: "/:tab(home|post)",
           builder: (context, state) {
             final tab = state.params["tab"]!;
             return MainNavigationScreen(

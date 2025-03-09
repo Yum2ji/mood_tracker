@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mood_tracker/constants/gaps.dart';
 import 'package:mood_tracker/constants/sizes.dart';
+import 'package:mood_tracker/features/authentication/repos/authentication_repo.dart';
 import 'package:mood_tracker/features/home/views/home_timeline_screen.dart';
 import 'package:mood_tracker/features/post/views/post_screen.dart';
 import 'package:mood_tracker/features/users/views/profile_screen.dart';
 
-class MainNavigationScreen extends StatefulWidget {
+class MainNavigationScreen extends ConsumerStatefulWidget {
   static const String routeName = "mainNavigation";
   final String tab;
   const MainNavigationScreen({
@@ -16,15 +18,16 @@ class MainNavigationScreen extends StatefulWidget {
   });
 
   @override
-  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
+  ConsumerState<MainNavigationScreen> createState() =>
+      _MainNavigationScreenState();
 }
 
-class _MainNavigationScreenState extends State<MainNavigationScreen> {
+class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   late int _selectedIndex = _tabs.indexOf(widget.tab);
   final List<String> _tabs = [
     "home",
     "post",
-    "profile",
+    // "profile",
   ];
 
   void onTap(int index) {
@@ -41,11 +44,17 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "🔥MOOD🔥",
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: Sizes.size24,
+        title: GestureDetector(
+          onTap: () {
+            ref.watch(authRepo).logOut();
+            context.go("/");
+          },
+          child: Text(
+            "🔥MOOD🔥",
+            style: TextStyle(
+              fontWeight: FontWeight.w800,
+              fontSize: Sizes.size24,
+            ),
           ),
         ),
       ),
@@ -59,10 +68,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             offstage: _selectedIndex != 1,
             child: PostScreen(),
           ),
-          Offstage(
+/*           Offstage(
             offstage: _selectedIndex != 2,
             child: ProfileScreen(),
-          ),
+          ), */
         ],
       ),
       bottomNavigationBar: Container(
@@ -105,7 +114,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 ),
               ),
             ),
-            Gaps.h24,
+/*             Gaps.h24,
             Expanded(
               child: GestureDetector(
                 onTap: () => onTap(2),
@@ -117,7 +126,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                   ),
                 ),
               ),
-            ),
+            ), */
           ],
         ),
       ),

@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mood_tracker/common/main_navigation_screen.dart';
 import 'package:mood_tracker/features/authentication/repos/authentication_repo.dart';
 import 'package:mood_tracker/features/post/models/post_model.dart';
 import 'package:mood_tracker/features/post/repos/post_repo.dart';
@@ -54,6 +56,11 @@ class PostViewModel extends AsyncNotifier<List<PostModel>> {
 
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
+    } else{
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MainNavigationScreen(tab: "home"),)
+      );
     }
   }
 
